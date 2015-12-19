@@ -1,0 +1,61 @@
+doctype html
+html
+  head
+    title= title
+    script(src='components/jquery/dist/jquery.min.js')
+    script(src='js/timer.js')
+    script(src="components/webcomponentsjs/webcomponents-lite.js")
+    link(rel='stylesheet', href='css/timer.css')
+    include ../imports.html
+  body
+    paper-drawer-panel(responsive-width="9001px" drawer-toggle-attribute="paper-drawer-left")
+      paper-header-panel.flex.header-panel.drawer(drawer)
+        paper-toolbar.toolbar
+          div Hi!
+        div.sidebar
+          paper-menu(selected="0")
+            paper-icon-item
+              iron-icon(icon="alarm" item-icon)
+              | Timer
+            paper-icon-item
+              iron-icon(icon="settings" item-icon)
+              | Settings
+            paper-icon-item
+              iron-icon(icon="social:group" item-icon)
+              | Race your friends!
+          section.sessions-header
+            h2 Sessions
+          section.session-selector-container
+            paper-menu.session-selector(selected="0")
+              paper-item 3x3
+              paper-item 2x2
+          paper-icon-item.new-session
+            iron-icon(icon="add" item-icon)
+            | New
+      div(main)
+        paper-drawer-panel(responsive-width="800px" drawer-toggle-attribute="paper-drawer-right" right-drawer)
+          paper-header-panel.flex.header-panel.drawer(drawer)
+            paper-toolbar.stats-toolbar
+              div Hi!
+            div.stats-sidebar
+          paper-header-panel.flex.header-panel(main)
+            paper-toolbar.toolbar
+              paper-icon-button(icon="menu" paper-drawer-left)
+              div Hi!
+              paper-icon-button(icon="trending-down" paper-drawer-right paper-drawer-toggle)
+            div.timer
+              p.timer-text 0.000
+    paper-dialog#newSession(modal="true")
+      paper-input(label="Name").new-session-name
+      paper-dropdown-menu(label="Scramble Type").new-session-scramble-type
+        paper-menu.dropdown-content.session-scramble-selector
+          paper-item 3x3
+      section.new-session-buttons
+        paper-button(dialog-dismiss) Cancel
+        paper-button.create-session Create
+    style(is="custom-style")
+      |.timer {
+      | @apply(--layout-horizontal);
+      | @apply(--layout-center-justified);
+      | @apply(--layout-center);
+      |}

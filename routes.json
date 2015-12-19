@@ -1,0 +1,9 @@
+{
+  "timer": [
+    {
+      "verb": "get",
+      "path": "/",
+      "function": "getIndex"
+    }
+  ]
+}

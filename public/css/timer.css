@@ -1,0 +1,66 @@
+:host {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+body {
+  font-family: RobotoDraft, sans-serif;
+  height: 100%;
+  margin:0
+}
+
+.header-panel {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.toolbar {
+  background: rgb(79, 125, 201) !important;
+}
+
+.stats-toolbar {
+  background: rgb(79, 125, 201) !important;
+  height: 128px !important;
+}
+
+.stats-sidebar {
+  height: calc(100vh - 128px);
+  background: #cfcfcf;
+}
+
+#mainPanel {
+  height: 100%;
+}
+
+.timer {
+  margin: 0;
+  height: calc(100vh - 64px);
+}
+
+.sidebar {
+  height: 100%;
+  bottom: 0;
+  top: 0;
+}
+
+.sessions-header {
+  margin: 8px;
+}
+
+.timer-text {
+  font-size: 200px;
+}
+
+.timer-ready {
+  color: #00da00;
+}
+
+.timer-inspection-penalty {
+  color: #b92300;
+}
+
+.timer-hold-more {
+  color: #ffdc0e;
+}
