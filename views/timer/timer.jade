@@ -3,6 +3,8 @@ html
   head
     title= title
     script(src='components/jquery/dist/jquery.min.js')
+    script(src="components/Chart.js/Chart.min.js")
+    script(src="js/scrambles.js ")
     script(src='js/timer.js')
     script(src="components/webcomponentsjs/webcomponents-lite.js")
     link(rel='stylesheet', href='css/timer.css')
@@ -13,16 +15,16 @@ html
         paper-toolbar.toolbar
           div Hi!
         div.sidebar
-          paper-menu(selected="0")
-            paper-icon-item
-              iron-icon(icon="alarm" item-icon)
-              | Timer
-            paper-icon-item
-              iron-icon(icon="settings" item-icon)
-              | Settings
-            paper-icon-item
-              iron-icon(icon="social:group" item-icon)
-              | Race your friends!
+          //paper-menu(selected="0")
+          //paper-icon-item
+            iron-icon(icon="alarm" item-icon)
+            | Timer
+          paper-icon-item.settings-item
+            iron-icon(icon="settings" item-icon)
+            | Settings
+          //paper-icon-item
+            iron-icon(icon="social:group" item-icon)
+            | Race your friends!
           section.sessions-header
             h2 Sessions
           section.session-selector-container
@@ -34,17 +36,133 @@ html
             | New
       div(main)
         paper-drawer-panel(responsive-width="800px" drawer-toggle-attribute="paper-drawer-right" right-drawer)
-          paper-header-panel.flex.header-panel.drawer(drawer)
-            paper-toolbar.stats-toolbar
-              div Hi!
-            div.stats-sidebar
+          div(drawer).stats-sidebar.vertical.layout
+            div.averages
+              div.average
+                div.average-label You are
+                div.large-average-content Sub-X
+              div.average
+                div.average-label Best time
+                div.large-average-content N/A
+              div.average#sidebarao100
+                div.average-label Average of 100
+                div.layout.horizontal
+                  div.average-best
+                    div.average-label Best
+                    div.average-content N/A
+                  div.average-current
+                    div.average-label Current
+                    div.average-content N/A
+              div.average#sidebarao50
+                div.average-label Average of 50
+                div.layout.horizontal
+                  div.average-best
+                    div.average-label Best
+                    div.average-content N/A
+                  div.average-current
+                    div.average-label Current
+                    div.average-content N/A
+              div.average#sidebarao12
+                div.average-label Average of 12
+                div.layout.horizontal
+                  div.average-best
+                    div.average-label Best
+                    div.average-content N/A
+                  div.average-current
+                    div.average-label Current
+                    div.average-content N/A
+              div.average#sidebarao5
+                div.average-label Average of 5
+                div.layout.horizontal
+                  div.average-best
+                    div.average-label Best
+                    div.average-content N/A
+                  div.average-current
+                    div.average-label Current
+                    div.average-content N/A
+              div.average#sidebarmo3
+                div.average-label Mean of 3
+                div.layout.horizontal
+                  div.average-best
+                    div.average-label Best
+                    div.average-content N/A
+                  div.average-current
+                    div.average-label Current
+                    div.average-content N/A
+            div.bottom-container
+              paper-button.see-more-button See more stats and times
+              div.graph
+                canvas#sidebarSolveGraph(width="256" height="256")
           paper-header-panel.flex.header-panel(main)
             paper-toolbar.toolbar
               paper-icon-button(icon="menu" paper-drawer-left)
-              div Hi!
-              paper-icon-button(icon="trending-down" paper-drawer-right paper-drawer-toggle)
+              div.scramble Scrambling...
+              paper-icon-button(icon="trending-down" paper-drawer-right paper-drawer-toggle).stats-button
             div.timer
               p.timer-text 0.000
+    paper-dialog#statsDialog
+      paper-header-panel
+        paper-toolbar.stats-toolbar
+          paper-tabs.stats-tabs(selected="0")
+            paper-tab Statistics
+            paper-tab Times
+        iron-pages.stats-pages(selected="0")
+          div.dialog-graphs
+            div.overview.layout.horizontal
+              div.average
+                div.average-label You are
+                div.large-average-content Sub-X
+              canvas#dialogSolveGraph(width="256" height="64")
+              div.average
+                div.average-label Best time
+                div.large-average-content 23.00
+            div.averages
+              div.average#dialogao100
+                div.average-label Average of 100
+                div.layout.horizontal
+                  div.average-best
+                    div.average-label Best
+                    div.average-content N/A
+                  div.average-current
+                    div.average-label Current
+                    div.average-content N/A
+              div.average#dialogao50
+                div.average-label Average of 50
+                div.layout.horizontal
+                  div.average-best
+                    div.average-label Best
+                    div.average-content N/A
+                  div.average-current
+                    div.average-label Current
+                    div.average-content N/A
+              div.average#dialogao12
+                div.average-label Average of 12
+                div.layout.horizontal
+                  div.average-best
+                    div.average-label Best
+                    div.average-content N/A
+                  div.average-current
+                    div.average-label Current
+                    div.average-content N/A
+              div.average#dialogao5
+                div.average-label Average of 5
+                div.layout.horizontal
+                  div.average-best
+                    div.average-label Best
+                    div.average-content N/A
+                  div.average-current
+                    div.average-label Current
+                    div.average-content N/A
+              div.average#dialogmo3
+                div.average-label Mean of 3
+                div.layout.horizontal
+                  div.average-best
+                    div.average-label Best
+                    div.average-content N/A
+                  div.average-current
+                    div.average-label Current
+                    div.average-content N/A
+          div.times
     paper-dialog#newSession(modal="true")
       paper-input(label="Name").new-session-name
       paper-dropdown-menu(label="Scramble Type").new-session-scramble-type
@@ -53,6 +171,32 @@ html
       section.new-session-buttons
         paper-button(dialog-dismiss) Cancel
         paper-button.create-session Create
+    paper-dialog#editSession(modal="true")
+      paper-input(label="Name").new-session-name
+      paper-dropdown-menu(label="Scramble Type").new-session-scramble-type
+        paper-menu.dropdown-content.session-scramble-selector
+          paper-item 3x3
+      section.edit-session-buttons
+        paper-button(dialog-dismiss) Cancel
+        paper-button.delete-session Delete
+        paper-button.save-session Save
+    paper-dialog#solveDetail(modal=true)
+      paper-header-panel.detail-header
+        paper-toolbar.solve-detail-toolbar 30.245
+        div.main
+    paper-dialog#settingsDialog
+      paper-header-panel
+        paper-toolbar.settings-toolbar
+          paper-tabs.settings-tabs(selected="0")
+            paper-tab Settings
+            paper-tab Sessions
+            paper-tab About
+        iron-pages.settings-pages(selected="0")
+          div.settings
+          div.session-settings
+          div.about
+            p Made by yayes2.
+            p Scrambler made by Lucas Garron.
     style(is="custom-style")
       |.timer {
       | @apply(--layout-horizontal);

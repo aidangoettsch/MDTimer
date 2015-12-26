@@ -20,14 +20,12 @@ body {
   background: rgb(79, 125, 201) !important;
 }
 
-.stats-toolbar {
-  background: rgb(79, 125, 201) !important;
-  height: 128px !important;
-}
-
 .stats-sidebar {
-  height: calc(100vh - 128px);
-  background: #cfcfcf;
+  height: 100vh;
+  background: #737373;
+  -webkit-box-shadow: 2px 0 15px 0 rgba(0,0,0,0.75);
+  -moz-box-shadow: 2px 0 15px 0 rgba(0,0,0,0.75);
+  box-shadow: 2px 0 15px 0 rgba(0,0,0,0.75);
 }
 
 #mainPanel {
@@ -63,4 +61,89 @@ body {
 
 .timer-hold-more {
   color: #ffdc0e;
+}
+
+.stats {
+  height: 100vh;
+}
+
+.averages {
+  height: calc(100vh - 296px);
+  overflow: auto;
+  cursor: pointer;
+}
+
+.average {
+  font-size: 50px;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid;
+}
+
+.average-label {
+  font-size: 20px;
+}
+
+.average-current {
+  width: calc(50% - 1px);
+  border-left: 1px solid;
+}
+
+.average-best {
+  width: calc(50% - 1px);
+  border-right: 1px solid;
+}
+
+.large-average-content {
+  font-size: 50px;
+}
+
+.average-content {
+  font-size: 30px;
+}
+
+#sidebarSolveGraph {
+  bottom: 0;
+  cursor: pointer;
+}
+
+.see-more-button {
+  width: 256px;
+  margin: 0;
+  border-radius: 0;
+  background: rgb(79, 125, 201);
+}
+
+.bottom-container {
+  height: 296px;
+  -webkit-box-shadow: 0 2px 15px 0 rgba(0,0,0,0.75);
+  -moz-box-shadow: 0 2px 15px 0 rgba(0,0,0,0.75);
+  box-shadow: 0 2px 15px 0 rgba(0,0,0,0.75);
+}
+
+#statsDialog, #statsDialog paper-header-panel, #settingsDialog, #settingsDialog paper-header-panel {
+  padding: 0;
+  margin: 0;
+  height: 414px;
+}
+
+#statsDialog .average {
+  width: 256px;
+  height: 64px;
+}
+
+#statsDialog .large-average-content {
+  font-size: 40px;
+  height: 32px;
+  bottom: 0;
+}
+
+.average-hidden {
+  display: none;
+}
+
+[icon="trending-down"] {
+  position: absolute;
+  top: 12px;
+  right: 27px;
 }
